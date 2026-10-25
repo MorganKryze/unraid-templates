@@ -1,0 +1,11 @@
+<CommunityApplications>
+  <Profile>
+    Templates maintained by MorganKryze.
+
+    **cairn** is the directory page you hand to the people you host services for: one YAML file in, a static multilingual page out, with no account to create and no database.
+
+    Report anything broken on the project's issue tracker and I will answer there.
+  </Profile>
+  <Icon>https://raw.githubusercontent.com/MorganKryze/unraid-templates/main/icon.svg</Icon>
+  <WebPage>https://github.com/MorganKryze/unraid-templates</WebPage>
+</CommunityApplications>

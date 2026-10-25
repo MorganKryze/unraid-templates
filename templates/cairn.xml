@@ -1,0 +1,41 @@
+<Container version="2">
+  <Name>cairn</Name>
+  <Repository>morgankryze/cairn:latest</Repository>
+  <Registry>https://hub.docker.com/r/morgankryze/cairn</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <!-- No Shell entry: the image is FROM scratch and carries no shell, so a console would fail. -->
+
+  <Icon>https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/cairn.png</Icon>
+  <WebUI>http://[IP]:[PORT:8080]</WebUI>
+
+  <Overview>
+    cairn is the page you hand to the people you host services for: family, a club, whoever ends up using your server. It shows your services and nothing else, with no account to create, no database and no outbound requests.&#13;
+    &#13;
+    The first run works with an empty config folder: cairn serves a getting-started page explaining what to do. Write a services.yaml in the folder mapped to /config and cairn picks it up within seconds, with no restart. If the file is invalid, cairn keeps the previous configuration and logs the key it did not recognise, so a typo never takes the page down.&#13;
+    &#13;
+    Each service can carry a live status pill pulled from Gatus or Uptime Kuma, so a visitor sees what is up before they click. The interface speaks eight languages and picks the visitor's own, and cairn serves its own legal and privacy pages.&#13;
+    &#13;
+    It ships as a single static Go binary in a scratch image, around 4 MB to pull, and it writes nothing at runtime, so the container runs read-only with every Linux capability dropped. The /config mapping is read-only for the same reason.&#13;
+    &#13;
+    Full reference: https://github.com/MorganKryze/cairn/tree/main/docs
+  </Overview>
+
+  <Support>https://github.com/MorganKryze/cairn/issues</Support>
+  <Project>https://github.com/MorganKryze/cairn</Project>
+  <TemplateURL>https://raw.githubusercontent.com/MorganKryze/unraid-templates/main/templates/cairn.xml</TemplateURL>
+  <ReadMe>https://raw.githubusercontent.com/MorganKryze/cairn/main/README.md</ReadMe>
+
+  <Category>Network:Web Tools:Utilities</Category>
+  <ExtraSearchTerms>dashboard homepage startpage directory multilingual guest</ExtraSearchTerms>
+  <License>GPL-3.0</License>
+  <Date>2026-10-25</Date>
+  <Changes>1.25.1: the hosting word folds again on a desktop, and the image rebuilds on Go 1.27.3 for a crypto/x509 fix.</Changes>
+
+  <Screenshot>https://raw.githubusercontent.com/MorganKryze/cairn/main/docs/assets/home-light.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/MorganKryze/cairn/main/docs/assets/home-dark.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/MorganKryze/cairn/main/docs/assets/detail.png</Screenshot>
+
+  <Config Name="WebUI" Target="8080" Default="8080" Mode="tcp" Description="HTTP port for the web interface." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
+  <Config Name="Config" Target="/config" Default="/mnt/user/appdata/cairn" Mode="ro" Description="The YAML files that describe your services. cairn only ever reads this folder, so it is mapped read-only." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/cairn</Config>
+</Container>
